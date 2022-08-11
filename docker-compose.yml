@@ -1,0 +1,55 @@
+version: "3.9"
+
+volumes:
+    db:
+    logs:
+        driver: local
+
+networks:
+    slim:
+        
+services:
+    web:
+        container_name: web_slim
+        working_dir: /var/www/html
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            docker: "true" 
+            APP_PORT: "8080"
+        ports:
+            - 8080:8080
+        volumes:
+            - ./web:/var/www/html
+            - ./web/logs:/var/www/html/logs
+        depends_on:
+            - db
+        networks:
+            - slim
+
+    db:
+        container_name: db_slim
+        image: mariadb:10.5.2
+        volumes:
+            - db:/var/lib/mysql
+        environment:
+            MARIADB_DATABASE: slimdb
+            MARIADB_USER: slim
+            MARIADB_PASSWORD: secret
+            MARIADB_ROOT_PASSWORD: secret
+            TZ: "Asia/Jakarta"
+        networks:
+            - slim
+
+    phpmyadmin:
+        container_name: phpmyadmin-slim
+        image: phpmyadmin:latest
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - 8082:80
+        networks:
+            - slim

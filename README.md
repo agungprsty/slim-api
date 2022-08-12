@@ -10,8 +10,7 @@ Build a simple API with Slim Framework
 ## Install the Application
 1. Click [Use this template](https://github.com/agungprsty/slim-api/generate)
 2. Git clone & change directory
-3. 
-4. To run the application in development, you can run these commands
+3. To run the application in development, you can run these commands
 
 - If you don't use docker:
 ```bash

@@ -9,20 +9,17 @@ networks:
     slim:
         
 services:
-    web:
-        container_name: web_slim
-        working_dir: /var/www/html
+    app:
+        container_name: app_slim
         build:
             context: .
             dockerfile: Dockerfile
         environment:
-            docker: "true" 
             APP_PORT: "8080"
         ports:
             - 8080:8080
         volumes:
-            - ./web:/var/www/html
-            - ./web/logs:/var/www/html/logs
+            - ./slim:/var/www/html
         depends_on:
             - db
         networks:
@@ -42,8 +39,8 @@ services:
         networks:
             - slim
 
-    phpmyadmin:
-        container_name: phpmyadmin-slim
+    pma:
+        container_name: pma-slim
         image: phpmyadmin:latest
         depends_on:
             - db

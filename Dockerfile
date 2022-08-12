@@ -1,7 +1,7 @@
 FROM php:8.1-alpine
 
 # Copy composer.lock and composer.json
-COPY ./web/composer.lock ./web/composer.json /var/www/html/
+COPY ./slim/composer.lock ./slim/composer.json /var/www/html/
 
 # Copy from image composer to local container
 COPY --from=composer:2.3 /usr/bin/composer /usr/local/bin/composer
@@ -17,10 +17,10 @@ WORKDIR /var/www/html
 RUN addgroup -S www && adduser -S www -G www
 
 # Copy existing application directory contents
-COPY ./web /var/www/html
+COPY ./slim /var/www/html
 
 # Copy existing application directory permissions
-COPY --chown=www:www ./web /var/www/html
+COPY --chown=www:www ./slim /var/www/html
 
 # Change current user to www
 USER www

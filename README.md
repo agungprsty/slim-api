@@ -1,5 +1,9 @@
 # API with Slim Framework
 
+<p align="center">
+    <img src="https://pbs.twimg.com/media/FOUaR-CXsAM5LOG?format=png&name=900x900" alt="slim-api">
+</p>
+
 ## Introduction
 Build a simple API with Slim Framework 
 

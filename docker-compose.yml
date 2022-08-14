@@ -15,7 +15,14 @@ services:
             context: .
             dockerfile: Dockerfile
         environment:
-            APP_PORT: "8080"
+            APP_PORT: 8080
+            APP_URL: http://localhost
+            DB_CONNECTION: mysql
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_DATABASE: slimdb
+            DB_USERNAME: slim
+            DB_PASSWORD: secret
         ports:
             - 8080:8080
         volumes:
@@ -36,6 +43,8 @@ services:
             MARIADB_PASSWORD: secret
             MARIADB_ROOT_PASSWORD: secret
             TZ: "Asia/Jakarta"
+        ports:
+            - "3306:3306"
         networks:
             - slim
 
